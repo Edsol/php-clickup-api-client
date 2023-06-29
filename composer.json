@@ -1,0 +1,31 @@
+{
+    "name": "edsol/php-clickup-api-client",
+    "description": "ClickUp V2 API client (unofficial)",
+    "keywords": [
+        "ClickUp",
+        "click-up",
+        "api",
+        "php"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Edoardo Soloperto",
+            "email": "edoardo.soloperto@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6",
+        "guzzlehttp/guzzle": "^6.3|^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "ClickUpClient\\": "src/"
+        }
+    },
+    "require-dev": {
+        "psy/psysh": "^0.9.8"
+    }
+}
