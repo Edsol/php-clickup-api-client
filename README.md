@@ -1,4 +1,20 @@
-A simple wrapper for [ClickUp](https://clickup.com/) API (v2).
+<h1 align='center'>
+Unofficial <a href="http://clickup.com">ClickUp</a> API Client </br>see <a href="https://clickup.com/api">ClickUp Api Docs</a>
+
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+![](https://vsmarketplacebadge.apphb.com/version-short/edsol.clickup.svg
+)
+![](https://vsmarketplacebadge.apphb.com/downloads-short/edsol.clickup.svg
+)
+![](https://vsmarketplacebadge.apphb.com/rating-short/edsol.clickup.svg
+)
+</h1>
+
+
+
+## Requirements
+
+You need to have a ClickUp token, use [official guide](https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api) to create one
 
 
 ## Install
@@ -6,66 +22,115 @@ A simple wrapper for [ClickUp](https://clickup.com/) API (v2).
 composer require "edsol/clickup-php"
 ```
 
-## Team
+## Implementations
 
-### get all
+### Team
+- [x] Read
+- [x] get Spaces
+
+### Space
+- [x] Read
+- [x] get Tags
+
+### Folder
+- [x] Read
+
+### Task
+- [x] Create
+- [x] Read
+- [x] Update
+- [x] Delete
+- [x] Add attachment/s
+- [x] Add assignee/s
+- [x] Get members
+    ### Comment
+    - [x] Read
+    - [x] Create
+    - [x] Update
+    - [x] Delete
+
+
+
+## Usages
+
+### Initialize client
 ```php
-$this->team()->all();
-```
-### get all spaces
-```php
-$this->team("12345")->spaces();
-```
-
-
-
-## Comment
-
-### get Task comment
-```php
-$this->task("12345")->comments();
-```
-
-### get List comment
-```php
-$this->list("12345")->comments();
-```
-
-### create
-```php
-$this->task("12345")->createComment([
-            "comment_text": "Task comment content",
-            // "assignee": 183,
-            // "notify_all": true
-        ]);
-```
-
-## Folder
-
-### get folder
-```php
-$this->folder("12345")->get();
+$clickup = new \ClickUpClient\Client('CLICK_UP_API_TOKEN');
 ```
 
-or
+### Team
 
 ```php
-$this->folder()->get("12345");
+$clickup->team()->all();
+$clickup->team()->spaces();
+$clickup->team()->user('USER_ID');
+```
+### Space
+
+```php
+$clickup->space()->get("SPACE_ID");
+$clickup->space('SPACE_ID')->tags();
+```
+### Folder
+
+```php
+$clickup->folder("SPACE_ID")->lists();
+$clickup->folder("FOLDER_ID")->get();
+$clickup->folder()->get("FOLDER_ID");
 ```
 
-## Space
-
-### get all spaces
+### List
 ```php
-$this->space()->all();
-```
-or
-
-```php
-$this->space()->get("12345");
+$clickup->taskList("LIST_ID")->get();
+$clickup->taskList("LIST_ID")->comments();
+$clickup->taskList("LIST_ID")->members();
 ```
 
-### get tasks
+### Task
 ```php
-$this->space("12345")->get();
+$clickup->task("TASK_ID")->get();
+$clickup->task("TASK_ID")->comments();
+$clickup->task("TASK_ID")->members();
+
+$clickup->task("TASK_ID")->add([
+    "name": "Updated Task Name",
+    "description": "Updated Task Content",
+]);
+$clickup->task("TASK_ID")->delete();
+$clickup->task("TASK_ID")->update([
+    "name": "Updated Task Name",
+    "description": "Updated Task Content"
+]);
+
+$clickup->task("TASK_ID")->addAssignees([
+    MEMBER_ID_1,
+    MEMBER_ID_2,
+]);
+$clickup->task("TASK_ID")->addAssignee(MEMBER_ID);
+
+$attachment = new \ClickUpClient\Objects\Attachment([
+    'contents' => \GuzzleHttp\Psr7\Utils::tryFopen('FILE_PATH', 'r'),
+    'filename' => 'filename.txt'
+]);
+$clickup->task("TASK_ID")->addAttachment($attachment);
+
+$attachments = new \ClickUpClient\Objects\AttachmentCollection([
+    [
+        'contents' => \GuzzleHttp\Psr7\Utils::tryFopen('FILE_PATH', 'r'),
+        'filename' => 'filename1.txt'
+    ],
+    [
+        'contents' => \GuzzleHttp\Psr7\Utils::tryFopen('FILE_PATH', 'r'),
+        'filename' => 'filename2.txt'
+    ],
+]);
+$clickup->task("TASK_ID")->addAttachments($attachments);
+```
+
+### Comment
+```php
+$clickup->comment('COMMENT_ID')->update([
+    'comment_text' => "update comment text"
+]);
+$clickup->comment()->deleteComment('COMMENT_ID');
 ```
