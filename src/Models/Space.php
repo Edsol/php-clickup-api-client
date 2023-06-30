@@ -7,12 +7,22 @@ class Space extends AbstractModel
     public $model = 'space';
 
     /**
-     * tags
+     * tags.
      *
      * @return void
      */
     public function tags()
     {
-        return $this->client()->get($this->model . DS . $this->id . DS . "tag");
+        return $this->client()->get($this->model.DS.$this->id.DS.'tag');
+    }
+
+    /**
+     * folders.
+     *
+     * @return void
+     */
+    public function folders()
+    {
+        return $this->client()->get($this->model.DS.$this->id.DS.'folder');
     }
 }

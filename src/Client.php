@@ -2,9 +2,6 @@
 
 namespace ClickUpClient;
 
-define('DOT', '.');
-define('DS', '/');
-
 class Client
 {
     private $guzzleClient;
@@ -15,6 +12,12 @@ class Client
 
     public function __construct($apiToken)
     {
+        if (!defined('DOT')) {
+            define('DOT', '.');
+        }
+        if (!defined('DS')) {
+            define('DS', '/');
+        }
         $this->guzzleClient = new \GuzzleHttp\Client([
             'base_uri' => 'https://api.clickup.com/api/v2/',
             'headers' => [

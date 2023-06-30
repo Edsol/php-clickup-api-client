@@ -70,6 +70,7 @@ $clickup->team()->user('USER_ID');
 ```php
 $clickup->space()->get("SPACE_ID");
 $clickup->space('SPACE_ID')->tags();
+$clickup->space('SPACE_ID')->folders();
 ```
 ### Folder
 
