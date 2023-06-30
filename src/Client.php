@@ -8,9 +8,9 @@ namespace ClickUpClient;
 class Client
 {
     private $guzzleClient;
-    private const MODELS_NAMESPACE = __NAMESPACE__ . "\\Models\\";
+    private const MODELS_NAMESPACE = __NAMESPACE__.'\\Models\\';
     private $models_match = [
-        'TaskList' => 'list'
+        'TaskList' => 'list',
     ];
 
     public function __construct($apiToken)
@@ -24,7 +24,7 @@ class Client
     }
 
     /**
-     * client
+     * client.
      *
      * @return Client
      */
@@ -34,65 +34,91 @@ class Client
     }
 
     /**
-     * __call
+     * __call.
      *
-     * @param  mixed $name
-     * @param  mixed $arguments
+     * @param mixed $name
+     * @param mixed $arguments
+     *
      * @return void
      */
     public function __call(string $name, array $arguments)
     {
-        if (class_exists(self::MODELS_NAMESPACE . ucfirst($name)) === false) {
+        if (class_exists(self::MODELS_NAMESPACE.ucfirst($name)) === false) {
             throw new \Exception("`$name` is not a method or object", 1);
         }
         $model = ucfirst($name);
-        $model_namespaced = self::MODELS_NAMESPACE . $model;
+        $model_namespaced = self::MODELS_NAMESPACE.$model;
 
         if (array_key_exists($model, $this->models_match)) {
             $model = $this->models_match[$model];
         }
 
         $object = new $model_namespaced($this, $arguments[0] ?? null);
+
         return $object;
     }
 
     /**
-     * @param string $method
-     * @param array  $params
      * @return mixed
      */
-    public function get($method, $params = [])
+    public function get(string $method, array $params = [])
     {
         $response = $this->guzzleClient->request('GET', $method, ['query' => $params]);
+
         return json_decode($response->getBody(), true);
     }
 
     /**
-     * @param string $method
-     * @param array $body
      * @return mixed
      */
-    public function post($method, $body = [])
+    public function post(string $method, array $body = [])
     {
         $response = $this->guzzleClient->request('POST', $method, ['json' => $body]);
+
         return json_decode($response->getBody(), true);
     }
 
     /**
-     * delete
+     * delete.
      *
-     * @param  mixed $method
+     * @param mixed $method
+     *
      * @return int
      */
-    public function delete($method)
+    public function delete(string $method)
     {
         $response = $this->guzzleClient->request('DELETE', $method);
+
         return $response->getStatusCode();
     }
 
-    public function put($method, $body = [])
+    /**
+     * put.
+     *
+     * @param mixed $method
+     * @param mixed $body
+     *
+     * @return void
+     */
+    public function put(string $method, array $body = [])
     {
         $response = $this->guzzleClient->request('PUT', $method, ['json' => $body]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    /**
+     * multipart.
+     *
+     * @param mixed $method
+     * @param mixed $attachment
+     *
+     * @return void
+     */
+    public function multipart(string $method, $attachment)
+    {
+        $response = $this->guzzleClient->request('POST', $method, $attachment);
+
         return json_decode($response->getBody(), true);
     }
 }

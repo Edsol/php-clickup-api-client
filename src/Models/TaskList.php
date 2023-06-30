@@ -2,8 +2,8 @@
 
 namespace ClickUpClient\Models;
 
-use \ClickUpClient\CommentTrait;
-use \ClickUpClient\MemberTrait;
+use ClickUpClient\Traits\CommentTrait;
+use ClickUpClient\Traits\MemberTrait;
 
 class TaskList extends AbstractModel
 {

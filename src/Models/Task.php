@@ -2,8 +2,8 @@
 
 namespace ClickUpClient\Models;
 
-use \ClickUpClient\CommentTrait;
-use \ClickUpClient\MemberTrait;
+use ClickUpClient\Traits\CommentTrait;
+use ClickUpClient\Traits\MemberTrait;
 
 class Task extends AbstractModel
 {
@@ -11,4 +11,8 @@ class Task extends AbstractModel
     use MemberTrait;
 
     public $model = 'task';
+
+    public function addAttachment()
+    {
+    }
 }
