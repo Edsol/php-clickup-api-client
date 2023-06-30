@@ -2,13 +2,13 @@
 
 namespace ClickUpClient;
 
-// define('DOT', '.');
-// define('DS', '/');
+define('DOT', '.');
+define('DS', '/');
 
 class Client
 {
     private $guzzleClient;
-    private const MODELS_NAMESPACE = __NAMESPACE__ . '\\Models\\';
+    private const MODELS_NAMESPACE = __NAMESPACE__.'\\Models\\';
     private $models_match = [
         'TaskList' => 'list',
     ];
@@ -43,11 +43,11 @@ class Client
      */
     public function __call(string $name, array $arguments)
     {
-        if (class_exists(self::MODELS_NAMESPACE . ucfirst($name)) === false) {
+        if (class_exists(self::MODELS_NAMESPACE.ucfirst($name)) === false) {
             throw new \Exception("`$name` is not a method or object", 1);
         }
         $model = ucfirst($name);
-        $model_namespaced = self::MODELS_NAMESPACE . $model;
+        $model_namespaced = self::MODELS_NAMESPACE.$model;
 
         if (array_key_exists($model, $this->models_match)) {
             $model = $this->models_match[$model];
@@ -118,6 +118,7 @@ class Client
     public function multipart(string $method, $attachment)
     {
         $response = $this->guzzleClient->post($method, ['multipart' => [$attachment]]);
+
         return json_decode($response->getBody(), true);
     }
 }

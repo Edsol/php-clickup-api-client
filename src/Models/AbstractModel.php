@@ -2,7 +2,7 @@
 
 namespace ClickUpClient\Models;
 
-use \ClickUpClient\Client;
+use ClickUpClient\Client;
 
 abstract class AbstractModel
 {
@@ -15,8 +15,7 @@ abstract class AbstractModel
     private $extra;
 
     /**
-     * @param Client $client
-     * @param array  $array
+     * @param array $array
      */
     public function __construct(Client $client, string $id = null)
     {
@@ -37,9 +36,10 @@ abstract class AbstractModel
     }
 
     /**
-     * setClient
+     * setClient.
      *
-     * @param  mixed $client
+     * @param mixed $client
+     *
      * @return void
      */
     private function setClient(Client $client)
@@ -48,9 +48,8 @@ abstract class AbstractModel
     }
 
     /**
-     * setModel
+     * setModel.
      *
-     * @param  string $model
      * @return void
      */
     public function setModel(string $model)
@@ -59,21 +58,22 @@ abstract class AbstractModel
     }
 
     /**
-     * checkId
+     * checkId.
      *
      * @return void
      */
     public function checkId()
     {
         if ($this->id === null) {
-            throw new \Exception("An ID is required to make the request", 1);
+            throw new \Exception('An ID is required to make the request', 1);
         }
     }
 
     /**
-     * setId
+     * setId.
      *
-     * @param  mixed $id
+     * @param mixed $id
+     *
      * @return void
      */
     public function setId(string $id)
@@ -83,6 +83,6 @@ abstract class AbstractModel
 
     public function get(string $id = null)
     {
-        return $this->client()->get($this->model . DS . ($id ?? $this->id));
+        return $this->client()->get($this->model.DS.($id ?? $this->id));
     }
 }
