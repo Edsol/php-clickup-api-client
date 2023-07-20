@@ -49,6 +49,11 @@ composer require "edsol/clickup-php"
     - [x] Update
     - [x] Delete
 
+### Webhook
+- [x] List
+- [x] Create
+- [x] Update
+- [x] Delete
 
 
 ## Usages
@@ -134,4 +139,26 @@ $clickup->comment('COMMENT_ID')->update([
     'comment_text' => "update comment text"
 ]);
 $clickup->comment()->deleteComment('COMMENT_ID');
+```
+
+### Webhook
+```php
+$clickup->team('TEAM_ID')->webhooks();
+$clickup->team('TEAM_ID')->createWebhook([
+    'endopint' => 'ENDPOINT_URL',
+    'events' => [
+        "taskCreated",
+        "taskUpdated",
+        "taskDeleted",
+    ],
+]);
+$clickup->webhook('WEBHOOK_ID')->updateWebhook([
+    'endopint' => 'ENDPOINT_URL',
+    'events' => [
+        "taskCreated",
+        "taskUpdated",
+        "taskDeleted",
+    ],
+]);
+$clickup->webhook('WEBHOOK_ID')->delete();
 ```

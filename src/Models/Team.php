@@ -2,8 +2,12 @@
 
 namespace ClickUpClient\Models;
 
+use \ClickUpClient\WebhookTrait;
+
 class Team extends AbstractModel
 {
+
+    use WebhookTrait;
 
     public $model = 'team';
 
