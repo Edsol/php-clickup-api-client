@@ -2,7 +2,7 @@
 
 namespace ClickUpClient\Models;
 
-use ClickUpClient\WebhookTrait;
+use ClickUpClient\Traits\WebhookTrait;
 
 class Team extends AbstractModel
 {
