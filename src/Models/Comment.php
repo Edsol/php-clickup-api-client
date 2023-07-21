@@ -2,7 +2,7 @@
 
 namespace ClickUpClient\Models;
 
-use \ClickUpClient\CommentTrait;
+use \ClickUpClient\Traits\CommentTrait;
 
 class Comment extends AbstractModel
 {
