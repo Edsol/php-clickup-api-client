@@ -90,6 +90,7 @@ $clickup->folder()->get("FOLDER_ID");
 $clickup->taskList("LIST_ID")->get();
 $clickup->taskList("LIST_ID")->comments();
 $clickup->taskList("LIST_ID")->members();
+$clickup->taskList("LIST_ID")->getCustomFields();
 ```
 
 ### Task
@@ -131,6 +132,8 @@ $attachments = new \ClickUpClient\Objects\AttachmentCollection([
     ],
 ]);
 $clickup->task("TASK_ID")->addAttachments($attachments);
+$clickup->task("TASK_ID")->setCustomField("FIELD_ID","NEW_FIELD_VALUE");
+$clickup->task("TASK_ID")->deleteCustomField("FIELD_ID");
 ```
 
 ### Comment

@@ -6,12 +6,14 @@ use ClickUpClient\Objects\Attachment;
 use ClickUpClient\Objects\AttachmentCollection;
 use ClickUpClient\Traits\CommentTrait;
 use ClickUpClient\Traits\MemberTrait;
+use ClickUpClient\Traits\CustomFieldsTrait;
 
 
 class Task extends AbstractModel
 {
     use CommentTrait;
     use MemberTrait;
+    use CustomFieldsTrait;
 
     public $model = 'task';
 

@@ -4,11 +4,13 @@ namespace ClickUpClient\Models;
 
 use ClickUpClient\Traits\CommentTrait;
 use ClickUpClient\Traits\MemberTrait;
+use ClickUpClient\Traits\CustomFieldsTrait;
 
 class TaskList extends AbstractModel
 {
     use CommentTrait;
     use MemberTrait;
+    use CustomFieldsTrait;
     public $model = 'list';
 
     /**
