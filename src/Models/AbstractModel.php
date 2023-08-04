@@ -81,8 +81,25 @@ abstract class AbstractModel
         $this->id = $id;
     }
 
+    /**
+     * get
+     *
+     * @param  string $id
+     * @return void
+     */
     public function get(string $id = null)
     {
-        return $this->client()->get($this->model.DS.($id ?? $this->id));
+        return $this->client()->get($this->model . DS . ($id ?? $this->id));
+    }
+
+    /**
+     * delete
+     *
+     * @param  string $id
+     * @return void
+     */
+    public function delete(string $id = null)
+    {
+        return $this->client()->delete($this->model . DS . ($id ?? $this->id));
     }
 }

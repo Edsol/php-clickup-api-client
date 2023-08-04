@@ -77,8 +77,10 @@ class Client
     public function post(string $method, array $body = [])
     {
         $response = $this->guzzleClient->post($method, ['json' => $body]);
+        // if($response['statusCode'] === 200){
 
-        return json_decode($response->getBody(), true);
+        // }
+        return json_decode($response->getBody() ?? $response->getStatusCode(), true);
     }
 
     /**
