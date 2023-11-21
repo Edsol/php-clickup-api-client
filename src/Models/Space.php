@@ -25,4 +25,15 @@ class Space extends AbstractModel
     {
         return $this->client()->get($this->model.DS.$this->id.DS.'folder');
     }
+
+    /**
+     * folderlessLists
+     *
+     * @return void
+     */
+    public function folderlessLists()
+    {
+        $this->checkId();
+        return $this->client()->get($this->model . DS . $this->id . DS . 'list');
+    }
 }

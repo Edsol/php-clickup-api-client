@@ -76,6 +76,7 @@ $clickup->team()->user('USER_ID');
 $clickup->space()->get("SPACE_ID");
 $clickup->space('SPACE_ID')->tags();
 $clickup->space('SPACE_ID')->folders();
+$clickup->space('SPACE_ID')->folderlessLists();
 ```
 ### Folder
 
