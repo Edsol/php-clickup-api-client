@@ -19,6 +19,7 @@ class Folder extends AbstractModel
 
     public function create($name)
     {
+        $this->checkId();
         return $this->client()->post('space' . DS . $this->id . DS . $this->model, ["name" => $name]);
     }
 }
