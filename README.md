@@ -93,6 +93,7 @@ $clickup->folder("SPACE_ID")->createList("LIST_NAME");
 ### List
 ```php
 $clickup->taskList("LIST_ID")->get();
+$clickup->taskList("LIST_ID")->getTasks();
 $clickup->taskList("LIST_ID")->comments();
 $clickup->taskList("LIST_ID")->members();
 $clickup->taskList("LIST_ID")->getCustomFields();

@@ -26,4 +26,10 @@ class TaskList extends AbstractModel
 
         return $this->client()->post($this->model.DS.$this->id.DS.'task', $data);
     }
+
+    public function getTasks(array $data=[]) {
+        $this->checkId();
+
+        return $this->client()->get($this->model.DS.$this->id.DS.'task', $data);
+    }
 }
