@@ -35,6 +35,7 @@ composer require "edsol/clickup-php"
 ### Folder
 - [x] Create
 - [x] Read
+- [x] Create List
 
 ### Task
 - [x] Create
@@ -86,6 +87,7 @@ $clickup->folder("SPACE_ID")->lists();
 $clickup->folder("FOLDER_ID")->get();
 $clickup->folder()->get("FOLDER_ID");
 $clickup->folder("SPACE_ID")->create("FOLDER_NAME");
+$clickup->folder("SPACE_ID")->createList("LIST_NAME");
 ```
 
 ### List
