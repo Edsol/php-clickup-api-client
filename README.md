@@ -33,7 +33,9 @@ composer require "edsol/clickup-php"
 - [x] get Tags
 
 ### Folder
+- [x] Create
 - [x] Read
+- [x] Create List
 
 ### Task
 - [x] Create
@@ -84,11 +86,14 @@ $clickup->space('SPACE_ID')->folderlessLists();
 $clickup->folder("SPACE_ID")->lists();
 $clickup->folder("FOLDER_ID")->get();
 $clickup->folder()->get("FOLDER_ID");
+$clickup->folder("SPACE_ID")->create("FOLDER_NAME");
+$clickup->folder("SPACE_ID")->createList("LIST_NAME");
 ```
 
 ### List
 ```php
 $clickup->taskList("LIST_ID")->get();
+$clickup->taskList("LIST_ID")->getTasks();
 $clickup->taskList("LIST_ID")->comments();
 $clickup->taskList("LIST_ID")->members();
 $clickup->taskList("LIST_ID")->getCustomFields();
