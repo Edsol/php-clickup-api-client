@@ -15,7 +15,7 @@ You need to have a ClickUp token, use [official guide](https://docs.clickup.com/
 ## Install
 
 ```bash
-composer require "edsol/clickup-php"
+composer require edsol/php-clickup-api-client
 ```
 
 ## Implementations
