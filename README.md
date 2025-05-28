@@ -2,22 +2,18 @@
 Unofficial <a href="http://clickup.com">ClickUp</a> API Client </br>see <a href="https://clickup.com/api">ClickUp Api Docs</a>
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-![](https://vsmarketplacebadge.apphb.com/version-short/edsol.clickup.svg
-)
-![](https://vsmarketplacebadge.apphb.com/downloads-short/edsol.clickup.svg
-)
-![](https://vsmarketplacebadge.apphb.com/rating-short/edsol.clickup.svg
-)
+![ ](https://vsmarketplacebadge.apphb.com/version-short/edsol.clickup.svg)
+![ ](https://vsmarketplacebadge.apphb.com/downloads-short/edsol.clickup.svg)
+![ ](https://vsmarketplacebadge.apphb.com/rating-short/edsol.clickup.svg)
+
 </h1>
-
-
 
 ## Requirements
 
 You need to have a ClickUp token, use [official guide](https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api) to create one
 
-
 ## Install
+
 ```bash
 composer require "edsol/clickup-php"
 ```
@@ -25,19 +21,23 @@ composer require "edsol/clickup-php"
 ## Implementations
 
 ### Team
+
 - [x] Read
 - [x] get Spaces
 
 ### Space
+
 - [x] Read
 - [x] get Tags
 
 ### Folder
+
 - [x] Create
 - [x] Read
 - [x] Create List
 
 ### Task
+
 - [x] Create
 - [x] Read
 - [x] Update
@@ -45,22 +45,25 @@ composer require "edsol/clickup-php"
 - [x] Add attachment/s
 - [x] Add assignee/s
 - [x] Get members
-    ### Comment
-    - [x] Read
-    - [x] Create
-    - [x] Update
-    - [x] Delete
+
+### Comment
+
+- [x] Read
+- [x] Create
+- [x] Update
+- [x] Delete
 
 ### Webhook
+
 - [x] List
 - [x] Create
 - [x] Update
 - [x] Delete
 
+## Usage
 
-## Usages
+First, initialize the client:
 
-### Initialize client
 ```php
 $clickup = new \ClickUpClient\Client('CLICK_UP_API_TOKEN');
 ```
@@ -72,6 +75,7 @@ $clickup->team()->all();
 $clickup->team()->spaces();
 $clickup->team()->user('USER_ID');
 ```
+
 ### Space
 
 ```php
@@ -80,6 +84,7 @@ $clickup->space('SPACE_ID')->tags();
 $clickup->space('SPACE_ID')->folders();
 $clickup->space('SPACE_ID')->folderlessLists();
 ```
+
 ### Folder
 
 ```php
@@ -91,6 +96,7 @@ $clickup->folder("SPACE_ID")->createList("LIST_NAME");
 ```
 
 ### List
+
 ```php
 $clickup->taskList("LIST_ID")->get();
 $clickup->taskList("LIST_ID")->getTasks();
@@ -100,6 +106,7 @@ $clickup->taskList("LIST_ID")->getCustomFields();
 ```
 
 ### Task
+
 ```php
 $clickup->task("TASK_ID")->get();
 $clickup->task("TASK_ID")->comments();
@@ -143,6 +150,7 @@ $clickup->task("TASK_ID")->deleteCustomField("FIELD_ID");
 ```
 
 ### Comment
+
 ```php
 $clickup->comment('COMMENT_ID')->update([
     'comment_text' => "update comment text"
@@ -151,6 +159,7 @@ $clickup->comment()->deleteComment('COMMENT_ID');
 ```
 
 ### Webhook
+
 ```php
 $clickup->team('TEAM_ID')->webhooks();
 $clickup->team('TEAM_ID')->createWebhook([
@@ -171,3 +180,49 @@ $clickup->webhook('WEBHOOK_ID')->updateWebhook([
 ]);
 $clickup->webhook('WEBHOOK_ID')->delete();
 ```
+
+#### Webhook payloads classes
+
+This package also provides classes to strongly type the payloads received from webhooks.
+
+For example:
+
+```php
+$task_comment_posted_payload = new \ClickUpClient\Objects\Webhook\Task\TaskCommentPostedPayload($request_body);
+```
+
+This allows you to work with a fully typed webhook payload, making it easier to handle and access its data within your application.
+
+##### Space
+
+- [ ] spaceCreated
+- [ ] spaceUpdated
+- [ ] spaceDeleted
+
+##### Folder
+
+- [ ] folderCreated
+- [ ] folderUpdated
+- [ ] folderDeleted
+
+##### List
+
+- [ ] listCreated
+- [ ] listUpdated
+- [ ] listDeleted
+
+##### Task
+
+- [x] taskCreated
+- [x] taskUpdated
+- [x] taskDeleted
+- [x] taskPriorityUpdated
+- [x] taskStatusUpdated
+- [x] taskAssigneeUpdated
+- [x] taskDueDateUpdated
+- [x] taskTagUpdated
+- [x] taskMoved
+- [x] taskCommentPosted
+- [x] taskCommentUpdated
+- [x] taskTimeEstimateUpdated
+- [x] taskTimeTrackedUpdated
