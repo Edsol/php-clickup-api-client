@@ -188,7 +188,10 @@ This package also provides classes to strongly type the payloads received from w
 For example:
 
 ```php
-$task_comment_posted_payload = new \ClickUpClient\Objects\Webhook\Task\TaskCommentPostedPayload($request_body);
+// If your request body is an array, you need to convert it to an object
+$request_body_object = json_decode(json_encode($request_body_array), false);
+
+$task_comment_posted_payload = new \ClickUpClient\Objects\Webhook\Task\TaskCommentPostedPayload($request_body_object);
 ```
 
 This allows you to work with a fully typed webhook payload, making it easier to handle and access its data within your application.
