@@ -24,12 +24,12 @@ class HistoryItem
 	/**
 	 * @var mixed
 	 */
-	public mixed $before = null;
+	public $before = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $after = null;
+	public $after = null;
 
 	public function __construct(object $data)
 	{

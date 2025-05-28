@@ -32,7 +32,7 @@ class User
 	/** 
 	 * @var string|null
 	 */
-	public mixed $profilePicture = null;
+	public $profilePicture = null;
 
 	public function __construct(object $data)
 	{
