@@ -2,32 +2,19 @@
 
 namespace ClickUpClient\Objects\Webhook\Task;
 
+use ClickUpClient\Objects\Webhook\Payload;
 use ClickUpClient\Objects\Webhook\StatusHistoryItem;
 
-class TaskStatusUpdatedPayload
+/**
+ * @property StatusHistoryItem[] $history_items
+ */
+class TaskStatusUpdatedPayload extends Payload
 {
-	/** 
-	 * @var string
-	 */
-	public string $event = 'taskStatusUpdated';
-
-	/** 
-	 * @var StatusHistoryItem[]
-	 */
-	public array $history_items = [];
-
-	/** 
-	 * @var string
-	 */
-	public string $task_id;
-
-	/** 
-	 * @var string
-	 */
-	public string $webhook_id;
-
 	public function __construct(object $data)
 	{
+		parent::__construct($data, 'taskStatusUpdated');
+
+		$this->history_items = [];
 		if (property_exists($data, 'history_items')) {
 			if (is_array($data->history_items) && !empty($data->history_items)) {
 				foreach ($data->history_items as $history_item) {
@@ -36,14 +23,6 @@ class TaskStatusUpdatedPayload
 					}
 				}
 			}
-		}
-
-		if (property_exists($data, 'task_id')) {
-			$this->task_id = strval($data->task_id);
-		}
-
-		if (property_exists($data, 'webhook_id')) {
-			$this->webhook_id = strval($data->webhook_id);
 		}
 	}
 }
