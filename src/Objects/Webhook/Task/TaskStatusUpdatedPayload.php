@@ -2,7 +2,7 @@
 
 namespace ClickUpClient\Objects\Webhook\Task;
 
-use ClickUpClient\Objects\Webhook\HistoryItem;
+use ClickUpClient\Objects\Webhook\StatusHistoryItem;
 
 class TaskStatusUpdatedPayload
 {
@@ -12,7 +12,7 @@ class TaskStatusUpdatedPayload
 	public string $event = 'taskStatusUpdated';
 
 	/** 
-	 * @var HistoryItem[]
+	 * @var StatusHistoryItem[]
 	 */
 	public array $history_items = [];
 
@@ -32,7 +32,7 @@ class TaskStatusUpdatedPayload
 			if (is_array($data->history_items) && !empty($data->history_items)) {
 				foreach ($data->history_items as $history_item) {
 					if (is_object($history_item)) {
-						$this->history_items[] = new HistoryItem($history_item);
+						$this->history_items[] = new StatusHistoryItem($history_item);
 					}
 				}
 			}
