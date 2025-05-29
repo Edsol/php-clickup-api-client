@@ -39,57 +39,57 @@ class Comment
 	/**
 	 * @var mixed
 	 */
-	public mixed $x = null;
+	public $x = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $y = null;
+	public $y = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $image_y = null;
+	public $image_y = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $image_x = null;
+	public $image_x = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $page = null;
+	public $page = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $comment_number = null;
+	public $comment_number = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $page_id = null;
+	public $page_id = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $page_name = null;
+	public $page_name = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $view_id = null;
+	public $view_id = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $view_name = null;
+	public $view_name = null;
 
 	/**
 	 * @var mixed
 	 */
-	public mixed $team = null;
+	public $team = null;
 
 	/**
 	 * @var User

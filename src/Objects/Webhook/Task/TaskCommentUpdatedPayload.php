@@ -3,31 +3,18 @@
 namespace ClickUpClient\Objects\Webhook\Task;
 
 use ClickUpClient\Objects\Webhook\CommentHistoryItem;
+use ClickUpClient\Objects\Webhook\WithHistoryItemsPayload;
 
-class TaskCommentUpdatedPayload
+/**
+ * @property CommentHistoryItem[] $history_items
+ */
+class TaskCommentUpdatedPayload extends WithHistoryItemsPayload
 {
-	/** 
-	 * @var string
-	 */
-	public string $event = 'taskCommentUpdated';
-
-	/** 
-	 * @var CommentHistoryItem[]
-	 */
-	public array $history_items = [];
-
-	/** 
-	 * @var string
-	 */
-	public string $task_id;
-
-	/** 
-	 * @var string
-	 */
-	public string $webhook_id;
-
 	public function __construct(object $data)
 	{
+		parent::__construct($data, 'taskCommentUpdated');
+
+		$this->history_items = [];
 		if (property_exists($data, 'history_items')) {
 			if (is_array($data->history_items) && !empty($data->history_items)) {
 				foreach ($data->history_items as $history_item) {
@@ -36,14 +23,6 @@ class TaskCommentUpdatedPayload
 					}
 				}
 			}
-		}
-
-		if (property_exists($data, 'task_id')) {
-			$this->task_id = strval($data->task_id);
-		}
-
-		if (property_exists($data, 'webhook_id')) {
-			$this->webhook_id = strval($data->webhook_id);
 		}
 	}
 }
