@@ -3,12 +3,12 @@
 namespace ClickUpClient\Objects\Webhook\Task;
 
 use ClickUpClient\Objects\Webhook\CommentHistoryItem;
-use ClickUpClient\Objects\Webhook\Payload;
+use ClickUpClient\Objects\Webhook\WithHistoryItemsPayload;
 
 /**
  * @property CommentHistoryItem[] $history_items
  */
-class TaskCommentUpdatedPayload extends Payload
+class TaskCommentUpdatedPayload extends WithHistoryItemsPayload
 {
 	public function __construct(object $data)
 	{

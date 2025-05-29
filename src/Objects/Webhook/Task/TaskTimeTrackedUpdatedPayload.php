@@ -2,9 +2,9 @@
 
 namespace ClickUpClient\Objects\Webhook\Task;
 
-use ClickUpClient\Objects\Webhook\Payload;
+use ClickUpClient\Objects\Webhook\WithHistoryItemsPayload;
 
-class TaskTimeTrackedUpdatedPayload extends Payload
+class TaskTimeTrackedUpdatedPayload extends WithHistoryItemsPayload
 {
 	public function __construct(object $data)
 	{
